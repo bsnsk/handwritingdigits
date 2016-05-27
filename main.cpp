@@ -1,6 +1,14 @@
 
-#include "knn.h"
+
 #include "mnist.h"
+
+#ifdef KNN_NO_KD
+#include "knn_no_kdtree.h"
+#endif
+
+#ifdef KNN
+#include "knn.h"
+#endif
 
 /*
  * MNIST Data Reader
@@ -34,13 +42,20 @@ void binaryzation(vector < T > &vec) {
 
 /*
  * Calculate image distance using
+ *      Euclid distance (single dim)
+ */
+int calcDistEuclidSingleDim(const DataType &a, const DataType &b, int i){
+    return ((a[i] - b[i]) * (a[i] - b[i]));
+}
+
+/*
+ * Calculate image distance
  *      Euclid distance
  */
-int calcDistEuclid(DataType a, DataType b){
+int calcDist(DataType a, DataType b){
     int re(0);
-    for (int i=0; i<a.size(); i++) {
-        re += ((a[i] - b[i]) * (a[i] - b[i]));
-    }
+    for (int i=0; i<a.size(); i++)
+        re += calcDistEuclidSingleDim(a, b, i);
     return re;
 }
 
@@ -56,7 +71,11 @@ int labelCmp(LabelType a, LabelType b){
 }
 
 /* define KNNClassifier */
-class KNNClassifier<DataType, LabelType> knn(5, calcDistEuclid, labelCmp);
+class KNNClassifier<DataType, LabelType> knn(
+        5,
+        calcDist,
+        calcDistEuclidSingleDim,
+        labelCmp);
 
 int main() {
 
@@ -68,8 +87,8 @@ int main() {
 
     mnist.read(train, testData, testLabels);
 
-    binaryzation(train);
-    binaryzation(testData);
+//    binaryzation(train);
+//    binaryzation(testData);
 
     knn.test(train, testData, testLabels);
 

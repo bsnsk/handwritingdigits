@@ -9,8 +9,6 @@
 #include "classifierBasic.h"
 #include "dataBasic.h"
 
-#include "kdtree.h"
-
 template <typename T, typename D>
 class KNNClassifier: public Classifier <T, D> {
 private:
@@ -57,6 +55,12 @@ private:
     Label2int LabelCmp;
 
     /*
+     * Labeled data (labeled during training)
+     * The 'Knowledge database' of this classifier
+     */
+    vector < DataWithLabel <T, D> > labeledData;
+
+    /*
      * K for K-Nearest-Neighbor
      */
     int K;
@@ -74,12 +78,6 @@ private:
      */
     D classify(
             const Data <T> &data);
-
-    /*
-     * KD-Tree to find nearest K data
-     *  Used to speed up searching process
-     */
-    KD_Tree < T, D> kdtree;
 
 public:
 
@@ -131,9 +129,22 @@ public:
 template <typename T, typename D>
 D KNNClassifier <T, D>::classify(
         const Data <T> &data) {
+    priority_queue < pair<int, D> > q;
+    while (!(q.empty()))
+        q.pop();
+    for (auto i=labeledData.begin(); i!=labeledData.end(); i++) {
+        pair <int, D> p = make_pair(DataDist(i->val, data.val), i->label);
+        if (q.size() < K)
+            q.push(p);
+        else if (q.top().first > p.first) {
+            q.pop();
+            q.push(p);
+        }
+    }
 
-    vector <D> vec = kdtree.query(data, K);
-
+    vector <D> vec;
+    for (; !q.empty(); q.pop())
+        vec.push_back(q.top().second);
     sort(vec.begin(), vec.end(), LabelCmp);
 
     int maxCount = 0;
@@ -162,7 +173,6 @@ KNNClassifier<T, D>::KNNClassifier(
         Label2int _LabelCmp) {
     K = _K;
     DataDist = _DataDist;
-    DataDistSingleDim = _DataDistSingleDim;
     LabelCmp = _LabelCmp;
     trained = 0;
 }
@@ -170,9 +180,8 @@ KNNClassifier<T, D>::KNNClassifier(
 template <typename T, typename D>
 void KNNClassifier<T, D>::train(
         vector < DataWithLabel <T, D> > dataWithLabel) {
-    kdtree.construct(DataDist,
-                     DataDistSingleDim,
-                     dataWithLabel);
+    for (auto i=dataWithLabel.begin(); i!=dataWithLabel.end(); i++)
+        labeledData.push_back(*i);
     trained = 1;
 }
 
