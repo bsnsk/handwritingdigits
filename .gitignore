@@ -1,0 +1,6 @@
+*.o
+main
+Makefile
+data
+*.log
+*.dSYM
