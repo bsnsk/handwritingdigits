@@ -23,9 +23,10 @@ MNISTReader::MNISTReader(string _path) {
  *      - test labels (stored to 'testLabels').
  *  The first two are stored in 'train'.
  */
-void MNISTReader::read(vector < DataWithLabel<DataType, LabelType> > &train,
-                       vector < Data<DataType> > &testData,
-                       vector < Data<LabelType> > &testLabels){
+void MNISTReader::read(
+        vector < DataWithLabel<DataType, LabelType> > &train,
+        vector < Data<DataType> > &testData,
+        vector < Data<LabelType> > &testLabels){
 
     train.clear();
     testData.clear();
@@ -45,9 +46,11 @@ void MNISTReader::read(vector < DataWithLabel<DataType, LabelType> > &train,
  *  called by public function 'read()'
  *  store test labels to parameter 'testLabels'
  */
-void MNISTReader::read_test_labels(vector < DataWithLabel<DataType, LabelType> > &train,
-                                   vector < Data<DataType> > &testData,
-                                   vector < Data<LabelType> > &testLabels){
+void MNISTReader::read_test_labels(
+        vector < DataWithLabel<DataType, LabelType> > &train,
+        vector < Data<DataType> > &testData,
+        vector < Data<LabelType> > &testLabels){
+
     ifstream in;
     intUnion t;
 
@@ -80,9 +83,11 @@ void MNISTReader::read_test_labels(vector < DataWithLabel<DataType, LabelType> >
  *  called by public function 'read()'
  *  store test images to parameter 'testData'
  */
-void MNISTReader::read_test_images(vector < DataWithLabel<DataType, LabelType> > &train,
-                                   vector < Data<DataType> > &testData,
-                                   vector < Data<LabelType> > &testLabels){
+void MNISTReader::read_test_images(
+        vector < DataWithLabel<DataType, LabelType> > &train,
+        vector < Data<DataType> > &testData,
+        vector < Data<LabelType> > &testLabels){
+
     ifstream in;
     intUnion t;
 
@@ -130,9 +135,10 @@ void MNISTReader::read_test_images(vector < DataWithLabel<DataType, LabelType> >
  *  called by public function 'read()'
  *  store train labes to parameter 'train' (label member)
  */
-void MNISTReader::read_train_labels(vector < DataWithLabel<DataType, LabelType> > &train,
-                                    vector < Data<DataType> > &testData,
-                                    vector < Data<LabelType> > &testLabels){
+void MNISTReader::read_train_labels(
+        vector < DataWithLabel<DataType, LabelType> > &train,
+        vector < Data<DataType> > &testData,
+        vector < Data<LabelType> > &testLabels){
 
     ifstream in;
     intUnion t;
@@ -165,9 +171,10 @@ void MNISTReader::read_train_labels(vector < DataWithLabel<DataType, LabelType> 
  *  called by public function 'read()'
  *  store train images to parameter 'train' (val member)
  */
-void MNISTReader::read_train_images(vector < DataWithLabel<DataType, LabelType> > &train,
-                                    vector < Data<DataType> > &testData,
-                                    vector < Data<LabelType> > &testLabels){
+void MNISTReader::read_train_images(
+        vector < DataWithLabel<DataType, LabelType> > &train,
+        vector < Data<DataType> > &testData,
+        vector < Data<LabelType> > &testLabels){
 
     ifstream in;
     intUnion t;

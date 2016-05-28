@@ -177,8 +177,10 @@ bool kdnode_cmp<DataType>::operator ()(const Data<DataType> &a,
 }
 
 template <typename DataType, typename LabelType>
-struct KD_Tree<DataType, LabelType>::kd_node * KD_Tree<DataType, LabelType>::build_node(
-        vector < DataWithLabel<DataType, LabelType> > &points) {
+struct KD_Tree<DataType, LabelType>::kd_node *
+        KD_Tree<DataType, LabelType>::build_node(
+            vector < DataWithLabel<DataType, LabelType> > &points) {
+
     if (points.empty())
         return NULL;
     kd_node *root;
@@ -240,7 +242,9 @@ KD_Tree<DataType, LabelType>::~KD_Tree(){
 }
 
 template <typename DataType, typename LabelType>
-vector < LabelType > KD_Tree<DataType, LabelType>::query(const Data<DataType> &query_point, int m){
+vector < LabelType > KD_Tree<DataType, LabelType>::query(
+        const Data<DataType> &query_point, int m){
+
     for (; !que.empty(); que.pop());
     query(root, query_point, m);
     vector < LabelType > seq;
@@ -258,12 +262,16 @@ KD_Tree<DataType, LabelType>::pair_type::pair_type(int d, LabelType *p){
 }
 
 template <typename DataType, typename LabelType>
-bool KD_Tree<DataType, LabelType>::pair_type::operator < (const pair_type &b) const {
+bool KD_Tree<DataType, LabelType>::pair_type::operator < (
+        const pair_type &b) const {
     return dist < b.dist;
 }
 
 template <typename DataType, typename LabelType>
-void KD_Tree<DataType, LabelType>::query(kd_node *root, const Data<DataType> &query_point, int m){
+void KD_Tree<DataType, LabelType>::query(
+        kd_node *root,
+        const Data<DataType> &query_point, int m){
+
     kd_node *n=root->ngtv, *p=root->pstv, *r=root;
     bool flag=0;
 
@@ -298,4 +306,5 @@ void KD_Tree<DataType, LabelType>::query(kd_node *root, const Data<DataType> &qu
     if (p && flag)
         query(p, query_point, m);
 }
+
 #endif //HANDWRITINGDIGITS_KDTREE_H
