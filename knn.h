@@ -20,7 +20,7 @@ private:
      *  return as an int
      *  take 2 DataType as parameters
      */
-    typedef int (*Data2int) (T, T);
+    typedef int (*Data2int) (const T &, const T &);
 
     /*
      * Function type: Label2int

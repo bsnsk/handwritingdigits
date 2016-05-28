@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.3)
 project(handwritingdigits)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2")
 
 set(SOURCE_FILES
         main.cpp
         mnist.cpp mnist.h
+        distances.cpp distances.h
         knn.h knn_no_kdtree.h
         kdtree.h
         dataBasic.h

@@ -2,6 +2,8 @@
 
 #include "mnist.h"
 
+#include "distances.h"
+
 #ifdef KNN_NO_KD
 #include "knn_no_kdtree.h"
 #endif
@@ -41,25 +43,6 @@ void binaryzation(vector < T > &vec) {
 }
 
 /*
- * Calculate image distance using
- *      Euclid distance (single dim)
- */
-int calcDistEuclidSingleDim(const DataType &a, const DataType &b, int i){
-    return ((a[i] - b[i]) * (a[i] - b[i]));
-}
-
-/*
- * Calculate image distance
- *      Euclid distance
- */
-int calcDist(DataType a, DataType b){
-    int re(0);
-    for (int i=0; i<a.size(); i++)
-        re += calcDistEuclidSingleDim(a, b, i);
-    return re;
-}
-
-/*
  * Label comparasion function labelCmp(a, b)
  *  return
  *      -1 if a < b,
@@ -73,8 +56,8 @@ int labelCmp(LabelType a, LabelType b){
 /* define KNNClassifier */
 class KNNClassifier<DataType, LabelType> knn(
         5,
-        calcDist,
-        calcDistEuclidSingleDim,
+        calcDistL3,
+        calcDistL3SingleDim,
         labelCmp);
 
 int main() {

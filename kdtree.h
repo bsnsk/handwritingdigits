@@ -48,7 +48,7 @@ class KD_Tree {
      *  return as an int
      *  take 2 DataType as parameters
      */
-    typedef int (*Data2int) (DataType, DataType);
+    typedef int (*Data2int) (const DataType &, const DataType &);
 
     /*
      * Function type: DataInt2int
