@@ -46,3 +46,24 @@ int calcDistL3(const DataType &a, const DataType &b){
         re += calcDistL3SingleDim(a, b, i);
     return re < 0 ? 2147483647LL : re;
 }
+
+/*****************************************************************************/
+
+/*
+ * Calculate image distance using
+ *      L1 distance (single dim)
+ */
+int calcDistL1SingleDim(const DataType &a, const DataType &b, int i){
+    return (abs(a[i] - b[i]));
+}
+
+/*
+ * Calculate image distance
+ *      L1 distance
+ */
+int calcDistL1(const DataType &a, const DataType &b){
+    int re(0);
+    for (int i=0; i<a.size(); i++)
+        re += calcDistL1SingleDim(a, b, i);
+    return re < 0 ? 2147483647LL : re;
+}

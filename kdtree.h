@@ -177,7 +177,7 @@ bool kdnode_cmp<DataType>::operator ()(const Data<DataType> &a,
 }
 
 template <typename DataType, typename LabelType>
-struct KD_Tree<DataType, LabelType>::kd_node *
+typename KD_Tree<DataType, LabelType>::kd_node *
         KD_Tree<DataType, LabelType>::build_node(
             vector < DataWithLabel<DataType, LabelType> > &points) {
 

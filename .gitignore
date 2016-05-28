@@ -4,3 +4,4 @@ main
 Makefile
 *.log
 *.dSYM
+tags

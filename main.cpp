@@ -56,8 +56,8 @@ int labelCmp(LabelType a, LabelType b){
 /* define KNNClassifier */
 class KNNClassifier<DataType, LabelType> knn(
         5,
-        calcDistL3,
-        calcDistL3SingleDim,
+        calcDistEuclid,
+        calcDistEuclidSingleDim,
         labelCmp);
 
 int main() {
