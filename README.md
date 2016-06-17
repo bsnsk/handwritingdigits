@@ -4,7 +4,7 @@ An Experiment using MNIST dataset.
 
 ## Manual Experiment Results
 
-Classifier             |   Distance      | Prepossessing                | Correct Ratio | Error Ratio
+Classifier             |   Distance      | Preprocessing                | Correct Ratio | Error Ratio
 -----------------------|-----------------|------------------------------|---------------|---------------
 KNN (kdtree, K=5)      | L2 (Euclidean)  | None                         | 96.90 %       |  3.10 %
 KNN (kdtree, K=5)      | L3              | None                         | 97.28 %       |  2.72 %
