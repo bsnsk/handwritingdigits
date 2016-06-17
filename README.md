@@ -6,7 +6,6 @@ An Experiment using MNIST dataset.
 
 Classifier             |   Distance      | Prepossessing                | Correct Ratio | Error Ratio
 -----------------------|-----------------|------------------------------|---------------|---------------
-Baseline (random)      |                 |                              | xx.xx %       |  xx.xx %
 KNN (kdtree, K=5)      | L2 (Euclidean)  | None                         | 96.90 %       |  3.10 %
 KNN (kdtree, K=5)      | L3              | None                         | 97.28 %       |  2.72 %
 KNN (kdtree, K=5)      | L1              | None                         | 96.26 %       |  3.74 %
