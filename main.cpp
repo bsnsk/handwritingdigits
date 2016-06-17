@@ -3,6 +3,7 @@
 #include "mnist.h"
 
 #include "distances.h"
+#include "preprocess.h"
 
 #ifdef KNN_NO_KD
 #include "knn_no_kdtree.h"
@@ -22,25 +23,6 @@ MNISTReader mnist;
  */
 typedef vector <int> DataType;
 typedef int LabelType;
-
-/*
- * binaryzation of the image data
- *  input:
- *      vec - vector <Data> or vector <DataWithLabel>
- *  threshold:
- *      Pixels with value under threshold is set to zero,
- *      otherwise set to one.
- */
-template <typename T>
-void binaryzation(vector < T > &vec) {
-    static int threshold = 10;
-    for (auto data=vec.begin(); data!=vec.end(); data++){
-        for (int i = 0; i < data->val.size(); ++i) {
-            data->val[i] = (data->val[i] < threshold ? 1 : 0);
-        }
-    }
-    cerr << "[INFO] Binaryzation finished." << endl;
-}
 
 /*
  * Label comparasion function labelCmp(a, b)
@@ -70,8 +52,21 @@ int main() {
 
     mnist.read(train, testData, testLabels);
 
+    // /* preprocess: binaryzation */
     // binaryzation(train);
     // binaryzation(testData);
+
+    // /* preprocess: downsample */
+    // downsample(train);
+    // downsample(testData);
+
+    // /* preprocess: sum2scalar */
+    // sum2scalar(train);
+    // sum2scalar(testData);
+
+    /* preprocess: scale */
+    blur(train);
+    blur(testData);
 
     knn.test(train, testData, testLabels);
 

@@ -13,6 +13,8 @@
 template <typename T>
 class Data {
 public:
+    typedef T DataType;
+
     T val;
     Data() {}
     Data(T _val): val(_val) {}
@@ -26,6 +28,8 @@ public:
 template <typename T, typename D>
 class DataWithLabel: public Data <T> {
 public:
+    typedef D LabelType;
+
     D label;
     DataWithLabel():Data<T>() {}
     DataWithLabel(T _val, D _label): Data<T>(_val), label(_label) {}
