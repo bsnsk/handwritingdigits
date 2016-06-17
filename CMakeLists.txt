@@ -19,7 +19,7 @@ if(KNN)
 endif(KNN)
 
 
-option(KNNNOKD "use KNN (kd-tree) classifier" OFF)
+option(KNNNOKD "do not use KNN (kd-tree) classifier" OFF)
 if(KNNNOKD)
     add_definitions(-DKNN_NO_KD)
 endif(KNNNOKD)

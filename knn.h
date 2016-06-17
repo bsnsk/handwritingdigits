@@ -186,6 +186,9 @@ void KNNClassifier<T, D>::classify(
     labels.clear();
     for (auto i = data.begin(); i != data.end(); ++i) {
         labels.push_back(classify(*i));
+        cerr << fixed << setprecision(2) << " "
+                << (i - data.begin()) * 100.0 / data.size()
+                << "\%\r" << flush;
     }
 }
 

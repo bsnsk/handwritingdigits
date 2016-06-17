@@ -70,8 +70,8 @@ int main() {
 
     mnist.read(train, testData, testLabels);
 
-//    binaryzation(train);
-//    binaryzation(testData);
+    // binaryzation(train);
+    // binaryzation(testData);
 
     knn.test(train, testData, testLabels);
 
