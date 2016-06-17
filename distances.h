@@ -12,6 +12,12 @@ typedef vector <int> DataType;
 typedef int LabelType;
 
 /*
+ * Distance Calculation Function Types
+ */ 
+ typedef int (*PtrCalcDistSingDim)(const DataType &, const DataType &, int);
+ typedef int (*PtrCalcDist)(const DataType &, const DataType &);
+
+/*
  * Calculate image distance using
  *      Euclid distance (L2)
  */

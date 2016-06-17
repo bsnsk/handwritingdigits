@@ -34,7 +34,7 @@ class Classifier {
      *      - classify
      *      - judge and report and correct ratio (to stderr)
      */
-    virtual void test(
+    virtual double test(
             const vector < DataWithLabel<T, D> > &train,
             const vector < Data<T> > &testData,
             const vector < Data<D> > &testLabels) = 0;

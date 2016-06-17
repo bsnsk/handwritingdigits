@@ -120,7 +120,7 @@ public:
      *      - classify
      *      - judge and report and correct ratio (to stderr)
      */
-    void test(
+    double test(
             const vector < DataWithLabel<T, D> > &train,
             const vector < Data<T> > &testData,
             const vector < Data<D> > &testLabels);
@@ -193,7 +193,7 @@ void KNNClassifier<T, D>::classify(
 }
 
 template <typename T, typename D>
-void KNNClassifier<T, D>::test(
+double KNNClassifier<T, D>::test(
         const vector < DataWithLabel<T, D> > &train,
         const vector < Data<T> > &testData,
         const vector < Data<D> > &testLabels){
@@ -213,6 +213,8 @@ void KNNClassifier<T, D>::test(
 
     cerr << "[RESULT] " << correct << " of " << tot << " correct: "
     << correct * 100.0 / tot << "%" << endl;
+
+    return correct * 1.0 / tot;
 
 }
 
