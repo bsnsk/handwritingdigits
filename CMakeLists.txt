@@ -11,6 +11,7 @@ set(SOURCE_FILES
         kdtree.h
         dataBasic.h
         classifierBasic.h
+        preprocess.h
         common.h)
 
 option(KNN "use KNN (kd-tree) classifier" ON)

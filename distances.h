@@ -13,8 +13,8 @@ typedef int LabelType;
 
 /*
  * Distance Calculation Function Types
- */ 
- typedef int (*PtrCalcDistSingDim)(const DataType &, const DataType &, int);
+ */
+ typedef int (*PtrCalcDistSingleDim)(const DataType &, const DataType &, int);
  typedef int (*PtrCalcDist)(const DataType &, const DataType &);
 
 /*

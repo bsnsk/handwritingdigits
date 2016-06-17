@@ -37,7 +37,7 @@ int labelCmp(LabelType a, LabelType b){
 
 /* define Parameters for KNNClassifier */
 int K = 5;
-PtrCalcDistSingDim ptrCalcDistSingDim = calcDistEuclidSingleDim;
+PtrCalcDistSingleDim ptrCalcDistSingleDim = calcDistEuclidSingleDim;
 PtrCalcDist ptrCalcDist = calcDistEuclid;
 
 void autopara(
@@ -63,7 +63,7 @@ void autopara(
     cerr << "[DEUG] Data Sample Generated of size " << dataSize << endl;
 
     double maxCorrectRate = 0;
-    vector < pair<PtrCalcDistSingDim, PtrCalcDist> > dists;
+    vector < pair<PtrCalcDistSingleDim, PtrCalcDist> > dists;
     dists.resize(4);
     dists[1] = make_pair(calcDistL1SingleDim, calcDistL1);
     dists[2] = make_pair(calcDistEuclidSingleDim, calcDistEuclid);
@@ -90,7 +90,7 @@ void autopara(
         }
 
     ptrCalcDist = dists[finalD].second;
-    ptrCalcDistSingDim = dists[finalD].first;
+    ptrCalcDistSingleDim = dists[finalD].first;
     cerr << "[INFO] Choose K=" << K << " and Distance=L" << finalD << endl;
 }
 
@@ -102,7 +102,7 @@ int main() {
     class KNNClassifier<DataType, LabelType> knn(
             K,
             ptrCalcDist,
-            ptrCalcDistSingDim,
+            ptrCalcDistSingleDim,
             labelCmp);
 
     vector < DataWithLabel<DataType, LabelType> > train;
